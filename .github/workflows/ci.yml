@@ -14,8 +14,15 @@ jobs:
           MINIO_DEFAULT_BUCKETS: test_bucket
         ports:
           - 9000:9000
+        options: >-
+          --health-cmd "curl http://localhost:9000/minio/health/live"
 
     steps:
       - run: |
           curl -v http://127.0.0.1:9000
           curl -v http://127.0.0.1:9000/minio/health/live
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
