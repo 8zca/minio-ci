@@ -1,0 +1,21 @@
+name: CI
+on: pull_request
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+
+    services:
+      s3:
+        image: bitnami/minio
+        env:
+          MINIO_ROOT_USER: access_key
+          MINIO_ROOT_PASSWORD: secret_key
+          MINIO_DEFAULT_BUCKETS: test
+        ports:
+          - 9000:9000
+
+    steps:
+      - run: |
+          curl -v http://127.0.0.1:9000
+          curl -v http://127.0.0.1:9000/minio/health/live
