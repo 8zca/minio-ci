@@ -11,7 +11,7 @@ jobs:
         env:
           MINIO_ROOT_USER: access_key
           MINIO_ROOT_PASSWORD: secret_key
-          MINIO_DEFAULT_BUCKETS: test
+          MINIO_DEFAULT_BUCKETS: test_bucket
         ports:
           - 9000:9000
 
